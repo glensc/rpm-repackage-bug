@@ -8,7 +8,7 @@ RUN echo >> /etc/environment
 # 1. upgrade pam 1.1 -> 1.2
 RUN poldek -u pam
 # 2. downgrade, this does goes well (no changes to config files)
-RUN rpm -Uhv --downgrade /var/spool/repackage/*/pam*.rpm
+RUN rpm -Uv --downgrade /var/spool/repackage/*/pam*.rpm
 
 # running this command will make reproducer fail (not reproduce problem)
 #RUN rm -rv /var/spool/repackage/*
@@ -17,4 +17,4 @@ RUN rpm -Uhv --downgrade /var/spool/repackage/*/pam*.rpm
 RUN poldek -u pam
 # 4. downgrade matching multiple pam packages
 RUN ls -l /var/spool/repackage/*/pam*.rpm
-RUN rpm -Uhv --downgrade /var/spool/repackage/*/pam*.rpm -vv
+RUN rpm -Uv --downgrade /var/spool/repackage/*/pam*.rpm -vv
