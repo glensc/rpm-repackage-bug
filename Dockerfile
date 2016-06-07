@@ -20,4 +20,4 @@ RUN poldek -u pam
 # 4. downgrade matching multiple pam packages
 RUN echo SCENARIO CREATED, RUNNING THE ACTUAL REPRODUCER
 RUN ls -l /var/spool/repackage/*/pam*.rpm
-RUN rpm -Uv --downgrade /var/spool/repackage/*/pam*.rpm -vv
+RUN rpm -Uv --downgrade /var/spool/repackage/*/pam*.rpm -vv || :
