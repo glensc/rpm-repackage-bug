@@ -1,5 +1,6 @@
 FROM glen/pld
 
+RUN echo CREATING SCENARIO, IGNORE ALL THE NOISE, SKIP TO "SCENARIO CREATED" STEP
 # install pam, older version
 RUN poldek -n th-2015 -u pam --noask --downgrade
 
@@ -15,6 +16,8 @@ RUN rpm -Uv --downgrade /var/spool/repackage/*/pam*.rpm
 
 # 3. upgrade again (to produce multiple repackage files)
 RUN poldek -u pam
+
 # 4. downgrade matching multiple pam packages
+RUN echo SCENARIO CREATED, RUNNING THE ACTUAL REPRODUCER
 RUN ls -l /var/spool/repackage/*/pam*.rpm
 RUN rpm -Uv --downgrade /var/spool/repackage/*/pam*.rpm -vv
